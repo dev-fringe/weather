@@ -8,6 +8,7 @@ public class LegalDong {
 	private String code;
 	private String name;
 	private String usage;
+	
 	public LegalDong() {
 		super();
 	}

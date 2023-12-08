@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.api.weather" />
+	<context:component-scan base-package="com.api.weather.service" />	
 	<context:component-scan base-package="com.api.exception" />
 	
 	
