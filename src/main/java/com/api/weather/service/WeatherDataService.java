@@ -13,14 +13,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 
+import com.api.weather.model.Grid;
+
 import lombok.SneakyThrows;
 
 @Service
 public class WeatherDataService {
 	// api
 	@SneakyThrows
-	public JSONObject getWeatherData(String serviceKey, String cburl, JSONObject location){
-		System.out.println("getWeatherData_location: "+location);
+	public JSONObject getWeatherData(String serviceKey, String cburl, Grid g){
+		System.out.println("getWeatherData_location: "+g);
 		
 		String numOfRows = "11";	// 페이지 당 출력 행 수
 		String dataType = "json";	// 요청할 데이터 타입
@@ -43,9 +45,9 @@ public class WeatherDataService {
 		urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "="
 				+ URLEncoder.encode(base[1], "UTF-8")); // 현재 시간 기준 발표 시각(정시단위, 02:00~23:00, 3시간마다 업데이트)
 		urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "="
-				+ URLEncoder.encode(location.get("x").toString(), "UTF-8")); // 예보지점의 X 좌표값(기상청 격자 좌표)
+				+ URLEncoder.encode(g.getX().toString(), "UTF-8")); // 예보지점의 X 좌표값(기상청 격자 좌표)
 		urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "="
-				+ URLEncoder.encode(location.get("y").toString(), "UTF-8")); // 예보지점의 Y 좌표값(기상청 격자 좌표)
+				+ URLEncoder.encode(g.getY().toString(), "UTF-8")); // 예보지점의 Y 좌표값(기상청 격자 좌표)
 		
 		System.out.println(urlBuilder.toString());
 		URL url = new URL(urlBuilder.toString());
