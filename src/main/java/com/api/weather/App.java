@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 import com.api.weather.model.Grid;
 import com.api.weather.service.RegionService;
 import com.api.weather.service.WeatherDataService;
-
+ 
 import config.CommonConfig;
 import jakarta.mail.BodyPart;
 import jakarta.mail.Multipart;

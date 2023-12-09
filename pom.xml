@@ -12,6 +12,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<org.springframework-version>6.1.1</org.springframework-version>
+		   <webcontent-dir>${project.basedir}\src\main\webapp\WEB-INF\lib</webcontent-dir>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -108,6 +109,13 @@
 		    <artifactId>jakarta.mail</artifactId>
 		    <version>2.0.2</version>
 		</dependency>		
+		<dependency>
+			<groupId>dev.fringe</groupId>
+			<artifactId>eshop</artifactId>
+			<version>0.5</version>
+		    <scope>system</scope>
+		    <systemPath>${webcontent-dir}/eshop-0.5.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
