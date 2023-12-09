@@ -129,7 +129,6 @@ public class WeatherDataService {
 		float val = 0;
 		if (result.matches("[+-]?\\d*(\\.\\d+)?"))// 숫자일 때
 			val = Float.parseFloat(value);
-
 		if (category.equals("POP"))
 			result += "%";
 		else if (category.equals("PTY")) {
