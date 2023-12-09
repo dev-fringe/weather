@@ -12,7 +12,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<org.springframework-version>6.1.1</org.springframework-version>
-		   <webcontent-dir>${project.basedir}\src\main\webapp\WEB-INF\lib</webcontent-dir>
+		   <webcontent-dir>${project.basedir}/src/main/webapp/WEB-INF/lib</webcontent-dir>
 	</properties>
 	<dependencies>
 		<dependency>
