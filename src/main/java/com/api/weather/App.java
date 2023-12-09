@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ImportResource;
 import com.api.weather.model.Grid;
 import com.api.weather.service.RegionService;
 import com.api.weather.service.WeatherDataService;
- 
-import config.CommonConfig;
+
+import config.MailConfig;
 import jakarta.mail.BodyPart;
 import jakarta.mail.Multipart;
 import jakarta.mail.Transport;
@@ -21,7 +21,7 @@ import lombok.SneakyThrows;
 
 @ImportResource("classpath:root-context.xml")
 @Data
-@Import(CommonConfig.class)
+@Import(MailConfig.class)
 public class App implements InitializingBean{
 
 	final RegionService r;
