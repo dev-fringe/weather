@@ -21,7 +21,7 @@ import lombok.SneakyThrows;
 
 @ImportResource("classpath:root-context.xml")
 @Data
-@Import(MailConfig.class)
+@Import(MailConfig.class) 
 public class App implements InitializingBean{
 
 	final RegionService r;
