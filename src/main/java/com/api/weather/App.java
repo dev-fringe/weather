@@ -41,6 +41,7 @@ public class App implements InitializingBean{
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(body);
 		m.setContent(multipart);
+		m.setSubject("서울특별시"+ " 은평구"+ " 진관동");
 		Transport.send(m);
 	}
 }
