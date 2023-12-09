@@ -2,7 +2,6 @@ package com.api.weather;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class Main {
 		//unzip
 		ZipFile z = new ZipFile("/download/법정동코드 전체자료.zip");
 		z.setCharset(Charset.forName("euc-kr"));
-		z.extractAll("/tmp");
+		z.extractAll("/tmp");  
 		List<String> ls = IOUtils.readLines(new FileInputStream(new File("/tmp/법정동코드 전체자료.txt")), "euc-kr");
 		List<LegalDong> lds = new ArrayList<>();
 		for (String l : ls) {
