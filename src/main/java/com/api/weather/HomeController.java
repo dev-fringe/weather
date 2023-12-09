@@ -23,7 +23,8 @@ public class HomeController {
 		return "home";
 	}
 	@RequestMapping(value="/{city}/{gu}/{dong}")
-	public @ResponseBody Object w(@PathVariable String city, @PathVariable String gu, @PathVariable String dong, Model m) {
+	public @ResponseBody Object w(@PathVariable(name = "city") String city, @PathVariable(name="gu") String gu, @PathVariable(name="dong") String dong, Model m) {
+		
 		Grid g = r.lookUpRegion(city, gu, dong);
 		return w.getWeatherData(g);
 	}
