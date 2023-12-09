@@ -35,9 +35,9 @@ public class App implements InitializingBean{
 	@SneakyThrows
 	public void afterPropertiesSet() {
 		Grid g = r.lookUpRegion("서울특별시", "은평구", "진관동");
-		System.out.println(w.getWeatherData(g));
+		String data = w.getWeatherData(g).toString();
 		BodyPart body = new MimeBodyPart(); 
-		body.setText(w.getWeatherData(g).toString());
+		body.setText(data);
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(body);
 		m.setContent(multipart);
