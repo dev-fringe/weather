@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 import com.api.weather.model.Grid;
+import com.api.weather.model.row;
+import com.api.weather.service.AirQualityService;
 import com.api.weather.service.RegionService;
 import com.api.weather.service.WeatherDataService;
 
@@ -27,6 +29,7 @@ public class App implements InitializingBean{
 	final RegionService r;
 	final WeatherDataService w;
 	final MimeMessage m;
+	final AirQualityService a;
 	
 	public static void main(String[] args) {
 		new AnnotationConfigApplicationContext(App.class);
@@ -34,10 +37,11 @@ public class App implements InitializingBean{
 	
 	@SneakyThrows
 	public void afterPropertiesSet() {
+		row row = a.getrow("은평구");
 		Grid g = r.lookUpRegion("서울특별시", "은평구", "진관동");
 		String data = w.getWeatherData(g).toString();
 		BodyPart body = new MimeBodyPart(); 
-		body.setText(data);
+		body.setText(data + "실시간 대기환경정보 " + row.toString());
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(body);
 		m.setContent(multipart);
