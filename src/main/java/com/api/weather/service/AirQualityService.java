@@ -40,7 +40,7 @@ public class AirQualityService {
 		List<row> rs = s.getRow();
 		row res = null;
 		for (row r : rs) {
-			if(r.getMSRSTENAME().contains("은평구")) {
+			if(r.getMSRSTENAME().contains(gu)) {
 				res = r;
 			}
 		}

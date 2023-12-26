@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 
 import com.api.weather.model.Body;
@@ -25,6 +26,7 @@ public class WeatherDataService {
 	// api
 	@SneakyThrows
 	public Map getWeatherData(Grid g) {
+		System.out.println("g=" + g);
 		String serviceKey = "iwEVyz24MuJlBvwmLqeWm63lq2lIjQRKvr6ExVoAt925m6B4ypQ2gEOieibt1pxcu9JJ6bYIvUodaZUNU+JIRg==";
 		String cburl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 		String[] base = getBaseDateTime(); // 현재 날짜, 시간을 기준으로 조회할 날짜, 시간 가져옴
