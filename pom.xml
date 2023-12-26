@@ -141,6 +141,11 @@
 		    <artifactId>xstream</artifactId>
 		    <version>1.4.20</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.github.spullara.mustache.java</groupId>
+		    <artifactId>compiler</artifactId>
+		    <version>0.9.11</version>
+		</dependency>		
 	</dependencies>
 	<build>
 		<finalName>weather</finalName>

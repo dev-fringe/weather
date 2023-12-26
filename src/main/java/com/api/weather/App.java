@@ -1,5 +1,8 @@
 package com.api.weather;
 
+import java.io.StringWriter;
+import java.util.Map;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Import;
@@ -10,6 +13,10 @@ import com.api.weather.model.row;
 import com.api.weather.service.AirQualityService;
 import com.api.weather.service.RegionService;
 import com.api.weather.service.WeatherDataService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 
 import config.MailConfig;
 import jakarta.mail.BodyPart;
@@ -32,16 +39,26 @@ public class App implements InitializingBean{
 	final AirQualityService a;
 	
 	public static void main(String[] args) {
-		new AnnotationConfigApplicationContext(App.class);
+		try (var context = new AnnotationConfigApplicationContext(App.class)){}
 	}
 	
 	@SneakyThrows
 	public void afterPropertiesSet() {
 		row row = a.getrow("은평구");
 		Grid g = r.lookUpRegion("서울특별시", "은평구", "진관동");
-		String data = w.getWeatherData(g).toString();
+		Map<?,?> map = w.getWeatherData(g);
 		BodyPart body = new MimeBodyPart(); 
-		body.setText(data + "실시간 대기환경정보 " + row.toString());
+		System.out.println(new ObjectMapper().writeValueAsString(map));
+	    StringWriter stringWriter = new StringWriter();
+		MustacheFactory mf = new DefaultMustacheFactory();
+		Mustache mustache = mf.compile("template.mustache");
+		mustache.execute(stringWriter, map).flush();
+	    StringWriter stringWriter2 = new StringWriter();
+		MustacheFactory mf2 = new DefaultMustacheFactory();
+		Mustache mustache2 = mf2.compile("template2.mustache");
+		mustache2.execute(stringWriter2, row).flush();		
+		System.out.println(stringWriter2.toString());
+		body.setText(stringWriter.toString() + stringWriter2.toString().replaceAll("&#9;", ""));
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(body);
 		m.setContent(multipart);

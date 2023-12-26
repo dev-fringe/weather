@@ -28,7 +28,7 @@ public class RegionService {
 		// unzip
 //		ZipFile z = new ZipFis
 		String userHomeDir = System.getProperty("user.home");
-		List<String> ls = IOUtils.readLines(new FileInputStream(new File(userHomeDir + "법정동코드 전체자료.txt")), "euc-kr");
+		List<String> ls = IOUtils.readLines(new FileInputStream(new File(userHomeDir + File.separator +  "법정동코드 전체자료.txt")), "euc-kr");
 		List<LegalDong> lds = new ArrayList<>();
 		for (String l : ls) {
 			if (ls.indexOf(l) != 0) {
